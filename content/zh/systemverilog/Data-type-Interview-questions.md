@@ -1,6 +1,6 @@
 ---
 title: "Data-type-Interview-questions"
-categories: ["SystemVerilog"]
+
 tags: "sv"
 
 weight: 23

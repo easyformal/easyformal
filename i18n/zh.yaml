@@ -19,7 +19,7 @@
 - id: navbar_label_shortcuts
   translation: '快捷键'
 - id: navbar_label_taxonomies
-  translation: 'Taxonomies'
+  translation: '分类'
 - id: navbar_label_versions
   translation: '版本'
 - id: navbar_label_info

@@ -1,6 +1,6 @@
 ---
 title: "Control-Flow-Interview-questions"
-categories: ["SystemVerilog"]
+
 tags: "sv"
 
 weight: 22

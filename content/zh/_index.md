@@ -15,3 +15,4 @@ description: "Easy Formal homepage"
 ### 关于我
 
 我是一个 EDA 研发工程师，有综合和验证工具研发经验。更多请看[https://lzxqaq.com](https://lzxqaq.com/about)。
+

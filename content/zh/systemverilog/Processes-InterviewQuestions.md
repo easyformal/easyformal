@@ -1,6 +1,6 @@
 ---
 title: "Processes-InterviewQuestions"
-categories: ["SystemVerilog"]
+
 tags: "sv"
 
 weight: 26

@@ -1,6 +1,6 @@
 ---
 title: "Differences-between-macros-and-parameters"
-categories: ["SystemVerilog"]
+
 tags: "sv"
 
 weight: 24

@@ -1,6 +1,6 @@
 ---
 title: "Choosing-an-array"
-categories: ["SystemVerilog"]
+
 tags: "sv"
 
 weight: 21

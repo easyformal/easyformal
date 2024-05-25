@@ -1,6 +1,6 @@
 ---
 title: "Interface-Interview-Questions"
-categories: ["SystemVerilog"]
+
 tags: "sv"
 
 weight: 25
