@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>形式验证 Formal on EasyFormal</title>
-    <link>/formal/</link>
+    <link>//localhost:1313/formal/</link>
     <description>Recent content in 形式验证 Formal on EasyFormal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <copyright>The MIT License (MIT) Copyright © 2023 Jordan GAZEAU</copyright>
-    <atom:link href="/formal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/formal/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

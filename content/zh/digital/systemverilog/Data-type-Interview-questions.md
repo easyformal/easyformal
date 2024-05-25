@@ -2,7 +2,7 @@
 title: "Data-type-Interview-questions"
 categories: ["SystemVerilog"]
 tags: "sv"
-titleIcon: "fa-solid"
+
 weight: 23
 ---
 

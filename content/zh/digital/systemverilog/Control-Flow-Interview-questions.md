@@ -2,7 +2,7 @@
 title: "Control-Flow-Interview-questions"
 categories: ["SystemVerilog"]
 tags: "sv"
-titleIcon: "fa-solid"
+
 weight: 22
 ---
 

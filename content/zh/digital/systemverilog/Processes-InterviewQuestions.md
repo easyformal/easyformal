@@ -2,7 +2,7 @@
 title: "Processes-InterviewQuestions"
 categories: ["SystemVerilog"]
 tags: "sv"
-titleIcon: "fa-solid"
+
 weight: 26
 ---
 

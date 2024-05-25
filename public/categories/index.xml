@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on EasyFormal</title>
-    <link>/categories/</link>
+    <link>//localhost:1313/categories/</link>
     <description>Recent content in Categories on EasyFormal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <copyright>The MIT License (MIT) Copyright © 2023 Jordan GAZEAU</copyright>
-    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SystemVerilog</title>
-      <link>/categories/systemverilog/</link>
+      <link>//localhost:1313/categories/systemverilog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/categories/systemverilog/</guid>
+      <guid>//localhost:1313/categories/systemverilog/</guid>
       <description></description>
     </item>
     <item>
       <title>Theorem Proving</title>
-      <link>/categories/theorem-proving/</link>
+      <link>//localhost:1313/categories/theorem-proving/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/categories/theorem-proving/</guid>
+      <guid>//localhost:1313/categories/theorem-proving/</guid>
       <description></description>
     </item>
   </channel>
