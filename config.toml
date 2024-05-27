@@ -52,8 +52,8 @@ themesdir              = "themes"
     languageName = "简体中文"
 
   [Languages.en]
-    contentDir   = "content/english"
-    title        = "Shadocs theme documentation"
+    contentDir   = "content/en"
+    title        = "EasyFormal"
     weight       = 2
     languageName = "English"
 
@@ -61,7 +61,6 @@ themesdir              = "themes"
 # Specific configuration
 #
 [params]
-  
   logo                    = "images/logo.png"
   logoTouch               = "images/logoTouch.png"
   image404                = "images/404.gif"
