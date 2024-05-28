@@ -1,49 +1,57 @@
 ---
-title: "问题：如何选择数组？"
+title: "Choosing-an-array"
 
 tags: "sv"
 
 weight: 21
 ---
 
-## 固定数组/静态数组：
+## Fixed Arrays/Static Arrays:
 
-**1) 固定数组优于所有其他类型的数组：**
+**1) Fixed Arrays Over All Arrays:**
 
-- 固定数组比所有其他类型的数组执行速度更快（即关联数组、动态数组、队列），因为它将存储在内存的未初始化数据段（bss段）中，所以执行时将消耗较少的模拟时间。堆是动态、关联和队列内存分配的段。
-下图显示了内存布局。
+* Fixed Arrays execute faster than all other types of arrays (i.e Associative arrays, dynamic arrays, queues) because it will store in uninitialized data segment (bss segment) of memory, so it will consume less simulation time to execute. And the heap is the segment where dynamic, associative and queue  memory allocation takes place.  
+The below figure shows the memory layout.
 
 ![memory_segments](https://user-images.githubusercontent.com/110448056/188258335-c478ebd9-4785-415d-9873-cbf6269eecd4.png)
 
-- 如果大小事先已知，那么我们可以选择固定数组而不是所有其他类型的数组。
+                                                Figure.1. Memory Layout
 
-## 动态数组：
+* Size is known previously then we can choose fixed arrays over all other types of arrays.
 
-**1) 动态数组优于固定数组：**
+## Dynamic Arrays:
 
-- 在运行时分配内存，因此内存不会被浪费，但在固定数组中，当我们不知道实际大小时，内存会被浪费。
-- 我们可以使用 `new()` 方法轻松添加元素，但在固定数组中，我们不能在声明后添加元素。
-- 在为其分配内存后，我们可以删除整个数组，但在固定数组中，我们不能在声明数组后删除内存。
+**1) Dynamic Arrays Over Fixed Arrays:**
 
-**注意：** 在固定数组中，没有 `new()`、`delete()` 等方法。
+* Memories allocated at run time, so memory will not be wasted but in fixed array memories would be wasted when we don't know the actual size.
+* We can easily add elements using new() method but in fixed arrays we can't add elements after the declaration.
+* We can delete entire arrays after allocating the memories to it but in fixed arrays we can't delete the memories after declaring array.
 
-**2) 动态数组优于关联数组：**
+**Note:** In fixed arrays, there is no methods like new(),delete().
 
-- 索引是连续的，但在关联数组中是不连续的。如下图所示。
+**2) Dynamic Arrays Over Associative Arrays:**
+
+* Indexing is in continues manner but in associative arrays it's non continuous. it's show in below figure.
 
 ![indexing](https://user-images.githubusercontent.com/110448056/188263690-151e9f91-36a8-4b2e-baf6-42505a1f7fc1.png)
 
-- 我们可以找到索引之间的关系，因此可以轻松使用循环遍历数组，但在关联数组中需要键。
+                                 Figure.2. continuous and non continuous indexing
 
-**3) 动态数组优于队列：**
+* We can find relation between indexing so travelling through arrays with ease using loops but in associative arrays keys are required.
 
-- 根据内存占用量，动态数组执行速度更快，并且需要较少的模拟时间，但队列需要更长的执行时间。
+**3) Dynamic Arrays Over Queues:**
+
+* According to footprint, dynamic array executes faster and it will required less simulation time but queues will required more time to execute.
 
 ![dynamic-1](https://user-images.githubusercontent.com/110448056/188267346-99ee256d-34b8-4946-92b6-4ecf42d368d4.png)
 
+                             Figure.3. dynamic array execution time
+
 ![queue-1](https://user-images.githubusercontent.com/110448056/188267352-d9bba19f-cf55-41fa-8646-2b907fabcb67.png)
 
-- 动态数组用于使用循环跟踪数组中的每个元素，但在队列中，通过弹出和推送操作，我们无法使用 `foreach` 循环跟踪数组的所有元素。对于弹出操作，数组的大小会减少，而索引会增加；对于推送操作，数组的大小会增加，索引也会增加，导致进程被终止。
+                             Figure.4. queue execution time
+
+* Dynamic array used to trace the each and every element in the array using the loops but in queue with pop and push operation. we can't trace the all element of array using fooreach loop. for pop operation the size of the array is decrement and i is increment and for push operation the size of the array is increment and i is also increment it result in Killing process. 
  
 code:
 
@@ -130,11 +138,12 @@ OUTPUT:
      Execution interrupted or reached maximum runtime.
 
 ---
-## 关联数组：
 
-**1) 关联数组相对于所有其他数组的优势：**
+## Associative Arrays:
 
-- 在关联数组中，使用 `exists(input index)` 方法来查找索引元素，而在关联和动态数组中不使用此方法。
+**1) Advantages of Associative array over all arrays:**
+
+* The ****function exists(input index);**** method is used in the associative array to find the index element where this method is not used in associative and dynamic array.
 
 code:  
 
@@ -159,9 +168,9 @@ OUTPUT:
      the element exist= {"Dilip":12}   
      exit 
 
-* 在动态数组和队列中，没有像 **function exists(input index)** 这样的方法来查找数组元素，如果我们在动态数组中使用 **function exists(input index);**，会出现以下错误：
+* In Dynamic array & queue  there is no such method like **function exists(input index)** to find the array element if we use  **function exists(input index);** in dynamic array the following error is occur
 
-动态数组：
+Dynamic array:    
 
 code:  
 
@@ -209,9 +218,9 @@ OUTPUT:
 
 ---
 
-**2) 关联数组相对于动态数组和队列的优势：**
+**2) Associative array over dynamic array and queue:**
 
-- 在关联数组中，索引类型可以是任何数据类型，但在动态数组和队列中，我们不能使用不同的数据类型作为索引。
+* In Associative array the **index type is of any data_type** can used but while in dynamic and queue **we can't use different data types for indexing.**
 
 code:
 
@@ -239,9 +248,10 @@ OUTPUT:
      exit  
 
 ---
-**3) 关联数组相对于动态数组和固定数组的优势：**
 
-- 我们可以使用 **function void delete(input index);** 在关联数组中删除特定索引元素，但在动态数组和固定数组中，我们不能使用 **function void delete(input index);** 来删除特定索引。
+**3) Associative array over dynamic array and fixed array:**
+
+* We can delete the particular index element in Associative array by using **function void delete(input index);** but in dynamic and fixed type we can't use **function void delete(input index);** to delete the particular index.  
 
 code:
 
@@ -279,14 +289,15 @@ OUTPUT:
 * The Associative array is memory friendly we can store the value of the array in any memory location.
 
 ---
-## 队列：
 
-**1) 队列相对于所有数组的优势：**
+## Queues:
 
-- 在队列中，主要优势是推送和弹出操作。
-- 推送用于将元素插入队列。
-- 推送有两种方法：**function push_back(input element_t);** 和 **function push_front(input element_t);**
-- 弹出有两种方法：**function pop_front();** 和 **function pop_back();**
+**1) Advantages of Queue over all arrays**
+
+* In queue the main advantage is push & pop operation.  
+* The push used to insert the element in to queue.  
+* The push as two methods **function push_back(input element_t); & function push_front(input element_t);**
+* The pop as two methods **function pop_front(); & function pop_back();**
 
 code:   
 
@@ -331,9 +342,9 @@ OUTPUT:
 
 ------
   
-**2) 队列相对于动态数组和关联数组的优势：**
+**2) Advantages of Queue over Dynamic & Associative Array:**
 
-- 在队列中，我们可以使用方法 **function insert(index, queue_element);** 在任意索引位置插入元素。因此，我们可以说插入操作很容易。因此，即使我们从中间移除或添加元素，队列的长度也会增加和缩减，但在动态数组和关联数组中，我们无法在数组中插入元素。
+* In queue we can insert the element at any index position using the method **function insert(index , queue_element);**. So we can say inserting is easy. Thus the queue length increases and shrinks even if we remove or add elements from the middle, but in dynamic and associative array we can't insert the element in the array.  
 
 code:
 

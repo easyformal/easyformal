@@ -1,72 +1,69 @@
 ---
-title: "Data-type-Interview-questions"
+title: "常见数据类型相关问题"
 
 tags: "sv"
 
 weight: 23
 ---
 
-****1.Is there any difference between reg and logic in SystemVerilog?****
+**1. SystemVerilog 中 reg 和 logic 有什么区别吗？**
 
-**Answer:**  
-Before system verilog ,verilog is mainly used for synthesis and verification purposes. In verilog there are two main data type   
+**答案：**  
+在 SystemVerilog 之前，Verilog 主要用于综合和验证目的。在 Verilog 中有两种主要的数据类型：
  1) reg  
- 2)net   
-Reg is mainly used when we want to store values in the variable .It is mainly used inside procedural block .mainly it is used for designing of sequential circuit .net variable are mainly continuously driven .In net type variable it is not possible to store value .
+ 2) net  
+reg 主要在需要将值存储在变量中的时候使用，通常在过程块内部使用，主要用于设计时序电路。而 net 变量主要是连续驱动的，在 net 类型变量中无法存储值。
 
-So ,there is lots of confusion for designer ,where to use reg and where to use net.This problem is solved in system verilog .System verilog introduced a new data type called as “logic”. This data type can be use at both the places. It can be use for net as well as reg.
+因此，设计者在选择使用 reg 还是 net 时常常会感到困惑。这个问题在 SystemVerilog 中得到了改善。SystemVerilog 引入了一种新的数据类型，称为 “logic”。这种数据类型可以在两种情况下使用，既可以用作 net 也可以用作 reg。
 
-**2.What is the difference between logic[7:0] and byte variable in System Verilog?**
+**2. SystemVerilog 中 logic[7:0] 和 byte 变量有什么区别？**
 
-**Answer:**
-* The 'byte' is a signed variable which means it can only be used to count values till 127.
-* A logic[7:0] variable can be used for an unsigned 8 bit variable that can count up to 255.  
+**答案：**
+* 'byte' 是一个有符号变量，这意味着它只能用于计数到 127。
+* logic[7:0] 变量可以用作无符号的 8 位变量，计数范围可以达到 255。
+**3.两态和四态的区别是什么？**
 
-**3.What are the difference between 2 state and 4 state?**
+**答案：**
+* 四态包括逻辑0、逻辑1、逻辑X（与寄存器相关，在现实世界中它被声明为0或1，具体取决于我们使用的模拟器）和逻辑Z（与线相关）。
+* 两态仅包括逻辑1和逻辑0。
 
-**Answer:**
-* 4 state includes logic 0, logic 1, logic X where it is related to registers, in real world it is declared as 0 or 1 it is based on the simulators we're using and logic Z, which is related to wires.  
-* 2 state includes of logic 1 and logic 0.
+**4.打包数组和非打包数组的区别**
 
-**4.Difference between packed and unpacked arrays**
-
-**Answer:**
-Refer the below link  
+**答案：**
+请参阅以下链接  
 https://github.com/muneeb-mbytes/SystemVerilog_Course/wiki/02.Array#static-arrays-has-two-types
 
-**5.Comparision between fixed, dynamic, associative array and queue.**
+**5.固定数组、动态数组、关联数组和队列的比较**
 
-**Answer:**
-
-Refer the below link 
+**答案：**
+请参阅以下链接  
 https://github.com/muneeb-mbytes/SystemVerilog_Course/wiki/Choosing-an-array
 
-**6.Given a dynamic array of size 100, how can the array be re-sized to hold 200 elements while the lower 100 elements are preserved as original?**
+**6.给定一个大小为100的动态数组，如何在保留前100个元素的情况下，将数组重新调整为200个元素的大小？**
 
-**Answer:**
-A dynamic array needs memory allocation using new[] to hold elements. Here is an example with an integer array that grows from an initial size of 100 elements to 200 elements.
+**答案：**
+一个动态数组需要使用new[]进行内存分配以容纳元素。以下是一个将初始大小为100的整数数组扩展到200个元素的示例。
    
-    // Declare the dynamic array.
+    // 声明动态数组。
     integer addr[]; 
-    // Create a 100-element array.
-     addr = new[100]; 
+    // 创建一个100元素的数组。
+    addr = new[100]; 
     ………
-    // Double the array size, preserving previous values.
+    // 在保留先前值的情况下，将数组大小加倍。
     addr = new[200](addr);
 
-**7.Difference between packed and unpacked structure**
-
-**Answer:**  
-Refer the below link  
+**7.打包结构和非打包结构的区别**
+**答案：**  
+请参阅以下链接  
 https://github.com/muneeb-mbytes/SystemVerilog_Course/wiki/03.Structure-and-Union#types-of-structure
 
-**8.What happens if we give same value for different names in enumeration data type?**
+**8.如果在枚举数据类型中为不同的名称赋予相同的值，会发生什么？**
 
-**Answer:**   
-code:
+**答案：**   
+代码：
       
       module set_value_enum;    
-      //set same value for MONDAY and TUESDAY.  
+      // 为 MONDAY 和 TUESDAY 赋相同的值
        enum {MONDAY=2, 
              TUESDAY=2, 
              WEDNESDAY=5, 
@@ -76,19 +73,17 @@ code:
              SUNDAY }days;
 
 
-output :       
+输出：       
 
       Error: Enum member 'TUESDAY' does not have unique value.
 
+**9.如果将 bit 声明为有符号并赋值为 11xz11x1，会输出什么？**
 
-
-**9.What is the output if you declare bit as signed and assign value as 11xz11x1 ?**
-
-**Answer:**   
-code:   
+**答案：**   
+代码：   
 
       module data_type_bit;   
-        // declare bit signed type 8 bit variable 
+        // 声明 bit 为 8 位有符号类型
         bit signed [7:0] data = 8'b11xz11x1;   
 
         initial begin
@@ -98,23 +93,20 @@ code:
       endmodule: data_type_bit
 
 
-output :   
+输出：   
 
       Value of bit signed data in binary = 11001101
       Value of bit signed data in decimal = -51
 
-In the above code, we declared bit as 11xz11x1, here bit is 2 state, so x and z are converted to 0 and it will become 11001101. Since it is signed bit it gives -51 in decimal format. 
+在上述代码中，我们将 bit 声明为 11xz11x1，这里 bit 是两态的，因此 x 和 z 被转换为 0，结果为 11001101。由于它是有符号的，十进制表示为 -51。
 
+**10.如果将 byte 声明为无符号并赋值为 11101001，会输出什么？**
 
-
-
-**10.What is the output if you declare byte as unsigned and assign value as 11101001 ?**
-
-**Answer:**   
-code: 
+**答案：**   
+代码： 
 
       module data_type_byte;   
-         // declare byte unsigned type 8 bit variable 
+         // 声明 byte 为 8 位无符号类型
          byte unsigned data = 8'b11101001;
 
          initial begin
@@ -124,10 +116,9 @@ code:
       endmodule: data_type_byte
 
 
-output :   
+输出：   
 
       Value of byte unsigned data in binary = 11101001
       Value of byte unsigned data in decimal = 233
 
-
-In the above code, we declared byte as 11101001. Since it is unsigned byte it gives 233 in decimal format.
+在上述代码中，我们将 byte 声明为 11101001。由于它是无符号的，十进制表示为 233。

@@ -1,158 +1,119 @@
 ---
-title: "Interface-Interview-Questions"
+title: "接口常见问题"
 
 tags: "sv"
 
 weight: 25
 ---
+1. 时钟块如何处理同步复位？
 
-**1. How does the clocking block handles synchronous reset?**
+解决方案：
 
-Solution:  
+同步复位仅在时钟事件下采样。当复位被使能时，它只在下一个活动时钟边沿之后生效。
 
-Synchronous reset  is sampled  only with respect to clock event. When reset is enabled, it will be effective only after next active clock edge.    
+```systemverilog
+clocking block TB_CB @(posedge clk);
+default input #1 output #0;
+input rst;
+output a, b;
+input y;
+```
 
-     clockingblock  TB_CB @(posedge clk)   
-     default input #1step output #0;   
-     input rst;
-     output a,b;
-     input y;
-
-**Note:** `The clocking block is only designed to handle synchronous reset` - it should  happen only be based on clock event. Reset in clocking block  should be handled elsewhere. If the clocking block outputs are variables, you can procedurally assign them outside of a clocking block on a reset.   
-
----   
-
-**2. How does the modport handle asynchronous reset?**
-
-Solution:  
-
-Asynchronous Reset  
-
-In asynchronous reset sampling is  done by independent of clk. When reset is enabled ,it will be effective immediately within the same the clock edges.  
-
-![image](https://user-images.githubusercontent.com/110484152/192695050-b55d72c7-d71c-423e-8cca-aab9433be1f7.png)  
-
-                                             Fig 1: Design example   
-
-Here, in this example there are three signals a,b and c. 'a' is continuous signal and asynchronous. 'b' and 'c' are synchronous signals. Using modport we can change the asynchronous signal 'a' to synchronous signal.  
-`modport TB_MP(TB_CB , output a);` 
-
-**Note:** `In Modport, the design can handled with asynchronous reset.` The asynchronous reset will be happen at any time.  
+**注意：** 时钟块仅设计用于处理同步复位 - 它应该仅基于时钟事件发生。时钟块中的复位应该在其他地方处理。如果时钟块的输出是变量，则可以在复位时在时钟块外部对其进行过程赋值。
 
 ---
 
-**3.What is  synchronous and asynchronous  reset?**      
+2. modport 如何处理异步复位？
 
-Solution: 
+解决方案：
 
-Synchronous reset means reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge.  
+异步复位
 
-module synchronous_reset_test (input logic clk, reset, in1, output logic out1)  
-always @(posedge clk)  
-if(reset) out1 <= 1'b0;  
-else out1 <= in1;  
-endmodule  
+在异步复位中，采样独立于时钟。当启用复位时，它会立即生效，在同一时钟边沿内生效。
 
-The out1 will be changed only with the posedge of clk. To get the effect of reset, reset should be wide enough to be captured by the next posedge of clk.  
+在这个例子中有三个信号a、b和c。'a'是连续信号且是异步的。'b'和'c'是同步信号。使用modport，我们可以将异步信号'a'改为同步信号。
 
-![image](https://user-images.githubusercontent.com/110484152/192996653-a09a4755-a5c5-4b47-aeda-97d2156185a1.png)  
+```systemverilog
+modport TB_MP(TB_CB, output a);
+```
 
-                                                   Fig 2: Synchronous Reset  
-
-Asynchronous Reset  
-
-In asynchronous reset, reset is sampled independent of clk. That means, when reset is enabled it will be effective immediately and will not check or wait for the clock edges.  
-
-module asynchronous_reset (input logic clk, reset, in1, output logic out1);  
-always @(posedge clk or posedge reset)  
-if(reset) out1 <= 1'b0;  
-else out1 <= in1;  
-endmodule  
-
-![image](https://user-images.githubusercontent.com/110484152/192997263-68f7de6a-da15-4deb-a429-86597ebc3e43.png)  
-
-                                                      Fig 3: Asynchronous Reset     
+**注意：** 在 modport 中，设计可以处理异步复位。异步复位将在任何时候发生。
 
 ---
 
-**4.What is the usage of blocking and non blocking assignments in sampling and driving signals?**   
+3. 什么是同步复位和异步复位？
 
-Solution: 
+解决方案：
 
-The blocking assignment (=) used for sampling signals in active region.  
-The non blocking assignment (<=)used for driving signals in active-NBA region.  
-So we can avoid the race condition in verilog.  
+同步复位意味着复位是相对于时钟进行采样的。换句话说，当启用复位时，它将在下一个活动时钟边沿之后才生效。
+
+异步复位
+
+在异步复位中，复位是独立于时钟进行采样的。这意味着，当启用复位时，它会立即生效，并且不会检查或等待时钟边沿。
 
 ---
 
-**5. Access restriction of signals using modport**
+4. 在采样和驱动信号中，阻塞和非阻塞赋值的用法是什么？
 
-Solution:
+解决方案：
 
-**Code Snippet:**
+阻塞赋值（=）用于在活动区域中采样信号。
+非阻塞赋值（<=）用于在活动非阻塞区域中驱动信号。
+因此，我们可以避免 Verilog 中的竞争条件。
 
-interface.sv file:
+---
 
-    // interface defination for and gate
-      interface and_intr;
-      //input and output signals declaration for design
-        logic p,q;
-        logic r;
-      // modport declaration for design file
-        modport DUT_MP(input q,output r);
-      // modport declaration for testbench file
-        modport TB_MP(output p,output q,input r);
-     endinterface : and_intr
+5. 使用 modport 限制信号的访问方式
 
-tb.sv file:
+解决方案：
 
-   // testbench file for and gate design
-   // module defination for testbench with interface instanciation
-      module tb(and_intr inf);
-  
-       initial
-        begin
-         $display("// and gate output using modports\n");
-         repeat(5)
-           begin
-             inf.TB_MP.p = $random;
-             #1;
-             inf.TB_MP.q = $random;
-             #1;
-             $display("input_p=%b\t input_q=%b\t output_r=%b",inf.TB_MP.p,inf.TB_MP.q,inf.TB_MP.r);
-           end
-        end
-      endmodule : tb
+接口文件（interface.sv）：
 
-design.sv file:
+```systemverilog
+interface and_intr;
+  logic p, q;
+  logic r;
+  modport DUT_MP(input q, output r);
+  modport TB_MP(output p, output q, input r);
+endinterface : and_intr
+```
 
-    // and gate design file
-    // module defination for and gate with interface instanciation
-       module and_gate(and_intr inf);
-    // assign the output using continuous assignment
-          assign inf.DUT_MP.r = (inf.DUT_MP.p) & (inf.DUT_MP.q);
-       endmodule : and_gate
+测试文件（tb.sv）：
 
-**Output:**
+```systemverilog
+module tb(and_intr inf);
+  initial begin
+    $display("// and gate output using modports\n");
+    repeat(5) begin
+      inf.TB_MP.p = $random;
+      #1;
+      inf.TB_MP.q = $random;
+      #1;
+      $display("input_p=%b\t input_q=%b\t output_r=%b", inf.TB_MP.p, inf.TB_MP.q, inf.TB_MP.r);
+    end
+  end
+endmodule : tb
+```
 
-when the input signal 'p' is not there in the DUT_MP(design modport) but that signal is called in testbench to generate the output at that time it will give an error which is shown in below snapshot.
+设计文件（design.sv）：
+
+```systemverilog
+module and_gate(and_intr inf);
+  assign inf.DUT_MP.r = (inf.DUT_MP.p) & (inf.DUT_MP.q);
+endmodule : and_gate
+```
+
+输出：
+
+当输入信号 'p' 不在 DUT_MP（设计 modport）中但该信号在测试中被调用以生成输出时，会出现错误，如下图所示：
 
 ![access_restricting_modports](https://user-images.githubusercontent.com/110448056/193022636-f48a0246-1d66-4741-b3a6-130f6e02eac0.png)
 
-**Lab link:-** https://github.com/muneeb-mbytes/SystemVerilog_Course/tree/production/interface/interface_error/modport_error   
-
 ---
 
-**6. What happens if we assign value to output in test module, while doing interface?**
+6. 如果在接口时为输出赋值，会发生什么？
 
-solution: We get a warning as one of the assignment is implicit , but we'll get proper output.
+解决方案：我们会收到一个警告，因为其中一个赋值是隐式的，但我们会得到正确的输出。
 
 ![inter_error](https://user-images.githubusercontent.com/110443214/193393454-5b2a0429-3c8f-434c-8777-86e183924d50.png)
-
-
-**Lab link:** https://github.com/muneeb-mbytes/SystemVerilog_Course/tree/production/interface/interface_error/interface_example
-
-
-
-
 
