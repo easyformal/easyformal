@@ -2,7 +2,7 @@
 weight: 3
 title: "定理证明"
 description: "HDL design."
-
+draft: true
 
 ---
 

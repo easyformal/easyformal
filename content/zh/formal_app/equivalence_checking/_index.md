@@ -3,6 +3,7 @@ weight: 2
 title: "等价性检查"
 description: "HDL design."
 
+draft: true
 
 ---
 
