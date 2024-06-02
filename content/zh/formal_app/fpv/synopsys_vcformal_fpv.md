@@ -11,24 +11,24 @@ description: "Synopsys VC Formal FPV 使用教程"
 
 FPV app 用于通过验证属性来验证DUT。这些属性可以由用户创建，或由商业AIP提供，用于接口协议或功能模块。
 
-FPV 应用程序使用一系列验证引擎来彻底证实或证伪一个属性。如果断言失败（证伪），FPV 应用程序将生成一个反例。然而，有些情况下可能无法明确证实或证伪一个属性。在这些情况下，该应用程序将提供**有界证明**结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
+FPV 应用程序使用一系列验证引擎来彻底证实或证伪一个属性。如果断言失败（证伪），FPV 应用程序将生成一个反例。然而，有些情况下可能无法明确证实或证伪一个属性。在这些情况下，该应用程序将提供 **有界证明** （Bounded Proof）结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
 
-![fpv1](fpv1.png)
+![fpv1](https://cdn.jsdelivr.net/gh/easyformal/easyformal-site@master/content/zh/formal_app/fpv/image/fpv1.png)
 
 FPV 应用程序需要以下几个输入：
 
 - Verilog/SystemVerilog/VHDL 格式的 RTL 设计文件
 - SVA 文件中编写的 assertion、assumption 和 cover 属性，或 SystemVerilog 设计文件中的内联 SVA
-- TCL 文件
+- TCL 脚本文件
 
 然后，FPV 应用程序将输出属性状态，如 assertion 状态、assumption 状态和 cover 状态。assertion 状态可能为 proven, falsified, vacuous,
-covered, uncovered, or inconclusive。
+covered, uncovered, 或者 inconclusive。
 
 | 状态 | 解释 |
 | ---- | ---- |
 proven | assertion pass 证实，即穷尽状态空间也找不到任何一个反例。|
 falsified | assertion fail 证伪，即出现不满足断言的反例。|
-inconclusive | 不确定，即在指定的 N 个 cycle depth 内，没有找到反|例，属于 Bounded Proof，有界证明。|
+inconclusive | 不确定，即在指定的 N 个 cycle depth 内，没有找到反例，属于有界证明。|
 vacuous | 空成功，对于包含蕴含操作符|-> |=>的property，如果 antecedent（先行算子）一直未被触发，因此一定不会出现反例，此时为 vacuous success。 |
 covered | 覆盖 |
 uncovered | 未覆盖 |
@@ -39,9 +39,28 @@ uncovered | 未覆盖 |
 
 第二种方法是在 SV 代码中内联编写 SVA 断言。这通常更快，也可能更容易，尽管在编写大量断言时不太实用。
 
-为了简化操作，这里将介绍如何在 SV 设计中内联编写断言。
+为了简化操作，这里将介绍如何在 SV 设计中内联编写断言。性。在这些情况下，该应用程序将提供 **有界证明** 性。在这些情况下，该应用程序将提供 **有界证明** （Bounded Proof）结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
+
+![fpv1](https://cdn.jsdelivr.net/gh/easyformal/easyformal-site@master/content/zh/formal_app/fpv/image/fpv1.png)
+（Bounded Proof）结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
+
+![fpv1](https://cdn.jsdelivr.net/gh/easyformal/easyformal-site@master/content/zh/formal_app/fpv/image/fpv1.png)
+
+
+第二种方法是在 SV 代码中内联编写 SVA 断言。这通常更快，也可能更容易，尽管在编写大量断言时不太实用。
+
+为了简化操作，这里将介绍如何在 SV 设计中内联编写断言。性。在这些情况下，该应用程序将提供 **有界证明** 性。在这些情况下，该应用程序将提供 **有界证明** （Bounded Proof）结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
+
+![fpv1](https://cdn.jsdelivr.net/gh/easyformal/easyformal-site@master/content/zh/formal_app/fpv/image/fpv1.png)
+（Bounded Proof）结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
+
+![fpv1](https://cdn.jsdelivr.net/gh/easyformal/easyformal-site@master/content/zh/formal_app/fpv/image/fpv1.png)
+
 
 ### TCL 文件
+性。在这些情况下，该应用程序将提供 **有界证明** （Bounded Proof）结果，表明在初始状态的**特定深度**内无法找到反例。对于一组断言的证实结果意味着在给定约束下，这些属性不可能为假。
+
+![fpv1](https://cdn.jsdelivr.net/gh/easyformal/easyformal-site@master/content/zh/formal_app/fpv/image/fpv1.png)
 
 接下来，我们将设置 TCL ⽂件。下⾯是 TCL ⽂件（图 5），您可以将其⽤作 VC Formal 上功能检查的模板。
 
