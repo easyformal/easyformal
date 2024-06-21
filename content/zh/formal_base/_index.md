@@ -1,5 +1,5 @@
 ---
-weight: 4
+weight: 2
 title: "形式验证-原理篇"
 description: "HDL design."
 titleIcon: "fa-solid fa-bug-slash"
