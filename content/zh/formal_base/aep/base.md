@@ -1,4 +1,4 @@
-### Automatically Extracted Property (AEP) 原理课件
+### Automatically Extracted Property (AEP) 原理
 
 ---
 

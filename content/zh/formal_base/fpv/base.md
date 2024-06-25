@@ -6,7 +6,7 @@ description: "逻辑等价性验证（LEC）基本原理"
 
 ---
 
-### 连接性检查 (Connectivity Checking, CC) 原理课件
+### 连接性检查 (Connectivity Checking, CC) 原理
 
 ---
 
