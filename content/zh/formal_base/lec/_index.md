@@ -3,6 +3,7 @@ weight: 4
 title: "逻辑等价性验证（LEC）"
 description: "lec"
 titleIcon: "fa-solid fa-bug-slash"
+draft: true
 
 ---
 
