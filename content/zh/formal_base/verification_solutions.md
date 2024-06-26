@@ -1,7 +1,7 @@
 ---
 weight: 2
-title: "形式验证解决方案：从入门到签核（Signoff）"
-description: "形式验证解决方案：从入门到签核（Signoff）"
+title: "形式验证解决方案：从入门到签核"
+description: "形式验证解决方案：从入门到签核"
 
 ---
 <!--
